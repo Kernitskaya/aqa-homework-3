@@ -12,51 +12,63 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class OrderCard {
+    private String startUrl = "http://localhost:9999";
+    private String validName = "Иван Тестеров";
+    private String validPhone = "+79999999999";
+
+    private String notValidPhone = "879999999999";
+    private String notValidName = "Ivan";
+
+    private String successOrderText  = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+    private String nameInputAttention = "Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.";
+    private String phoneInputAttention = "Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.";
+    private String dataUsageAttention = "Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй";
+
     @Test
     void testValidOrder() {
-        open("http://localhost:7777");
+        open(startUrl);
         SelenideElement form = $("[id=root]");
-        form.$(byAttribute("name", "name")).setValue("Иван Тестеров");
-        form.$(byAttribute("name", "phone")).setValue("+79999999999");
+        form.$(byAttribute("name", "name")).setValue(validName);
+        form.$(byAttribute("name", "phone")).setValue(validPhone);
         form.$("[data-test-id='agreement']").click();
         form.$("button").click();
 
-        form.$("[data-test-id='order-success']").shouldBe(exactText("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
+        form.$("[data-test-id='order-success']").shouldBe(exactText(successOrderText));
     }
 
     @Test
     void testOrderWithInvalidName() {
-        open("http://localhost:7777");
+        open(startUrl);
         SelenideElement form = $("[id=root]");
-        form.$(byAttribute("name", "name")).setValue("Ivan");
-        form.$(byAttribute("name", "phone")).setValue("879999999999");
+        form.$(byAttribute("name", "name")).setValue(notValidName);
+        form.$(byAttribute("name", "phone")).setValue(notValidPhone);
         form.$("[data-test-id='agreement']").click();
         form.$("button").click();
 
-        $(byText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.")).shouldBe(visible);
+        $(byText(nameInputAttention)).shouldBe(visible);
     }
 
     @Test
     void testOrderWithInvalidPhoneNumber() {
-        open("http://localhost:7777");
+        open(startUrl);
         SelenideElement form = $("[id=root]");
-        $(byAttribute("name", "name")).setValue("Иван Тестеров");
-        form.$(byAttribute("name", "phone")).setValue("87999999999");
+        $(byAttribute("name", "name")).setValue(validName);
+        form.$(byAttribute("name", "phone")).setValue(notValidPhone);
         form.$("[data-test-id='agreement']").click();
         form.$("button").click();
 
-        $(byText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.")).shouldBe(visible);
+        $(byText(phoneInputAttention)).shouldBe(visible);
     }
 
     @Test
     void testOrderWithUncheckedAttention() {
-        open("http://localhost:9999");
+        open(startUrl);
         SelenideElement form = $("[id=root]");
-        form.$(byAttribute("name", "name")).setValue("Иван Тестеров");
-        form.$(byAttribute("name", "phone")).setValue("+79999999999");
+        form.$(byAttribute("name", "name")).setValue(validName);
+        form.$(byAttribute("name", "phone")).setValue(validPhone);
         form.$("button").click();
 
-        $(byText("Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй"))
+        $(byText(dataUsageAttention))
                 .shouldBe(Condition.cssValue("color", "rgba(255, 92, 92, 1)"));
     }
 }

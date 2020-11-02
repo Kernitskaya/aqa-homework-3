@@ -5,7 +5,7 @@ stack: jdk 11
 build: off
 
 install:
-  - java -jar ./artifacts/app-order.jar -port=7777 &
+  - java -jar ./artifacts/app-order.jar &
 
 build_script:
   - ./gradlew test -Dselenide.headless=true --info
