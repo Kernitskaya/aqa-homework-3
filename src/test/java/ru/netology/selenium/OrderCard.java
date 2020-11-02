@@ -1,7 +1,9 @@
 package ru.netology.selenium;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.exactText;
@@ -12,6 +14,12 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class OrderCard {
+
+    @BeforeAll
+    void setUp() {
+        Configuration.headless = true;
+    }
+
     @Test
     void testValidOrder() {
         open("http://localhost:7777");
@@ -50,7 +58,7 @@ public class OrderCard {
 
     @Test
     void testOrderWithUncheckedAttention() {
-        open("http://localhost:7777");
+        open("http://localhost:9999");
         SelenideElement form = $("[id=root]");
         form.$(byAttribute("name", "name")).setValue("Иван Тестеров");
         form.$(byAttribute("name", "phone")).setValue("+79999999999");
