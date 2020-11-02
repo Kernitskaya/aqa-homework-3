@@ -6,7 +6,7 @@ build: off
 
 install:
   - "git clone --depth 1 git://github.com/pyvista/gl-ci-helpers.git"
-  - "powershell gl-ci-helpers/appveyor/install_opengl.ps1"
+  - ps: gl-ci-helpers/appveyor/install_opengl.ps1
   - "SET PYVISTA_OFF_SCREEN=True"
   - java -jar ./artifacts/app-mbank.jar -port=7777 &
 
