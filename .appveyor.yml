@@ -4,10 +4,6 @@ stack: jdk 11
 
 build: off
 
-artifacts:
-  - path: /home/appveyor/projects/aqa-homework-3/build/reports/
-    name: reports
-
 install:
   - java -jar ./artifacts/app-mbank.jar -port=7777 &
 
