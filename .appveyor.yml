@@ -4,9 +4,6 @@ stack: jdk 11
 
 build: off
 
-environment:
-
-
 install:
   - java -jar ./artifacts/app-mbank.jar -port=7777 &
 
