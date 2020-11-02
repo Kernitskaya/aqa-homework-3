@@ -39,10 +39,11 @@ public class OrderCard {
     @Test
     void testOrderWithInvalidPhoneNumber() {
         open("http://localhost:7777");
+        SelenideElement form = $("[id=root]");
         $(byAttribute("name", "name")).setValue("Иван Тестеров");
-        $(byAttribute("name", "phone")).setValue("87999999999");
-        $("[data-test-id='agreement']").click();
-        $("button").click();
+        form.$(byAttribute("name", "phone")).setValue("87999999999");
+        form.$("[data-test-id='agreement']").click();
+        form.$("button").click();
 
         $(byText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.")).shouldBe(visible);
     }
