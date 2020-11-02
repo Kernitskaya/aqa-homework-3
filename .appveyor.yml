@@ -8,4 +8,4 @@ install:
   - java -jar ./artifacts/app-mbank.jar -port=7777 &
 
 build_script:
-  - ./gradlew test -Dchromeoptions.args=--headless,--disable-gpu --info
+  - ./gradlew test -Dselenide.headless=true -Dselenide.disable-gpu=-true --info
