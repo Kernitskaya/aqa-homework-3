@@ -1,0 +1,11 @@
+image: Ubuntu
+
+stack: jdk 11
+
+build: off
+
+install:
+  - java -jar ./artifacts/app-mbank.jar &
+
+build_script:
+  - ./gradlew test --info
