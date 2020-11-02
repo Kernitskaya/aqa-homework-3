@@ -8,4 +8,4 @@ install:
   - java -jar ./artifacts/app-mbank.jar -port=7777 &
 
 build_script:
-  - ./gradlew test -Dselenide.headless=true
+  - ./gradlew test -Dselenide.headless=true -f
