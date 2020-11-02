@@ -1,9 +1,7 @@
 package ru.netology.selenium;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.exactText;
@@ -14,12 +12,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class OrderCard {
-
-    @BeforeAll
-    void setUp() {
-        Configuration.headless = true;
-    }
-
     @Test
     void testValidOrder() {
         open("http://localhost:7777");

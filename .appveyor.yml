@@ -4,8 +4,11 @@ stack: jdk 11
 
 build: off
 
+environment:
+
+
 install:
   - java -jar ./artifacts/app-mbank.jar -port=7777 &
 
 build_script:
-  - ./gradlew test --info
+  - ./gradlew test -Dselenide.headless=true
