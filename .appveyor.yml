@@ -5,7 +5,7 @@ stack: jdk 11
 build: off
 
 install:
-  - java -jar ./artifacts/app-mbank.jar &
+  - java -jar ./artifacts/app-mbank.jar -port=7777 &
 
 build_script:
   - ./gradlew test --info

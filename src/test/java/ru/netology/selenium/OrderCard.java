@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class OrderCard {
     @Test
     void testValidOrder() {
-        open("http://localhost:9999");
+        open("http://localhost:7777");
         SelenideElement form = $("[id=root]");
         form.$(byAttribute("name", "name")).setValue("Иван Тестеров");
         form.$(byAttribute("name", "phone")).setValue("+79999999999");
@@ -26,7 +26,7 @@ public class OrderCard {
 
     @Test
     void testOrderWithInvalidName() {
-        open("http://localhost:9999");
+        open("http://localhost:7777");
         SelenideElement form = $("[id=root]");
         form.$(byAttribute("name", "name")).setValue("Ivan");
         form.$(byAttribute("name", "phone")).setValue("879999999999");
@@ -38,7 +38,7 @@ public class OrderCard {
 
     @Test
     void testOrderWithInvalidPhoneNumber() {
-        open("http://localhost:9999");
+        open("http://localhost:7777");
         SelenideElement form = $("[id=root]");
         form.$(byAttribute("name", "name")).setValue("Иван Тестеров");
         form.$(byAttribute("name", "phone")).setValue("87999999999");
@@ -50,7 +50,7 @@ public class OrderCard {
 
     @Test
     void testOrderWithUncheckedAttention() {
-        open("http://localhost:9999");
+        open("http://localhost:7777");
         SelenideElement form = $("[id=root]");
         form.$(byAttribute("name", "name")).setValue("Иван Тестеров");
         form.$(byAttribute("name", "phone")).setValue("+79999999999");
