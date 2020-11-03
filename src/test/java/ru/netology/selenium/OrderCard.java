@@ -68,7 +68,7 @@ public class OrderCard {
         form.$(byAttribute("name", "phone")).setValue(validPhone);
         form.$("button").click();
 
-        $(byText(dataUsageAttention))
-                .shouldBe(Condition.cssValue("color", "rgba(255, 92, 92, 1)"));
+        $("[class*='input_invalid'][data-test-id='agreement']")
+                .shouldBe(visible);
     }
 }
